@@ -1,0 +1,49 @@
+Arthur Silva Martins
+Matrícula: 2018216002
+Matéria: Estrutura de Dados
+Docente: Antonio Carlos
+
+Explicando porque em C não existe passagem de parâmetro por referência.
+
+Passagem de parâmetros por valor: A função recebe uma cópia da variável que é fornecida quando é invocada. Todas as alterações feitas dentro da função não vão afectar os valores originais.
+
+Passagem de parâmetros por referência: Neste caso o que é enviado para a função é uma referência às variáveis utilizadas, e não uma simples cópia, pelo que as alterações realizadas dentro da função irão certamente alterar os valores contidos nessas variáveis.
+
+EXEMPLO DE PASSAGEM POR VALOR:
+
+#include
+void troca(int a, int b){
+        int temp;
+        temp=a;
+        a=b;
+        b=temp;
+}
+int main(){
+        int a=2,b=3;
+        printf("Antes de chamar a função :\na=%d\nb=%d\n",a,b);
+        troca(a,b);
+        printf("Depois de chamar a função:\na=%d\nb=%d\n",a,b);
+        return 0;
+}
+
+Apesar da troca dentro da função, os valores originais não sofreram alterações. REFERÊNCIA BIBLIOGRÁFICA: https://gracianotorrao.wordpress.com/2008/05/19/funcoes-passagem-de-parametros-por-valorreferencia-em-cc/#:~:text=Apesar%20da%20troca%20dentro%20da,valores%20originais%20n%C3%A3o%20sofreram%20altera%C3%A7%C3%B5es.&text=Contradizendo%20o%20t%C3%ADtulo%2C%20em%20C,obrigat%C3%B3rio%20o%20uso%20de%20apontadores).
+
+
+EXEMPLO DE PASSAGEM POR "REFERÊNCIA" EM C:
+ 
+#include
+void troca(int *a, int *b){
+        int temp;
+        temp=*a;
+        *a=*b;
+        *b=temp;
+}
+int main(){
+        int a=2,b=3;
+        printf("Antes de chamar a função :\na=%d\nb=%d\n",a,b);
+        troca(&a,&b);
+        printf("Depois de chamar a função:\na=%d\nb=%d\n",a,b);
+        return 0;
+}
+
+Logo, observa-se que para simular uma passagem por referência em C, necessita do uso de ponteiros, um mecanismo onde é utilizado essa espécie de recurso para apontar o endereço de uma determinada variável.
